@@ -1,5 +1,4 @@
+require "delegate"
 require "simplestate/version"
-
-module Simplestate
-  # Your code goes here...
-end
+require "simplestate/state_holder"
+require "simplestate/state"
