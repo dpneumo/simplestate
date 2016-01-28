@@ -1,8 +1,7 @@
-class State
+class DummyState < State
   attr_reader :holder, :previous_state
   def initialize(holder, previous_state)
     @holder = holder
-    @previous_state = previous_state
   end
 
 private
@@ -11,10 +10,10 @@ private
   end
 
   def enter
-    raise "#{self.class.name} does not implement #enter."
+    "dummy enter"
   end
 
   def exit
-    raise "#{self.class.name} does not implement #exit."
+    'dummy exit'
   end
 end
