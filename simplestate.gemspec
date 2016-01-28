@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A SimpleDelegator based implementation of the State Pattern}
   spec.description   = %q{Provides a base State class and a subclassed SimpleDelegator modified to provide state pattern support.}
-  spec.homepage      = "https://github.com/dpneumo/simplestate."
+  spec.homepage      = "https://github.com/dpneumo/simplestate"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
