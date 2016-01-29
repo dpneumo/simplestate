@@ -40,6 +40,12 @@ module Button
   end
 
   class Button < StateHolder
+    attr_reader :color
+    def initialize(opts={})
+      @color = opts.fetch :color
+      super
+    end
+
     def name
       "Button"
     end
