@@ -2,7 +2,7 @@ module Button
   class On < State
     def press
       transition_to(Off)
-      holder.messages << "#{holder.button_name} is off"
+      holder.messages << "#{holder.name} is off"
     end
 
     def name
@@ -22,7 +22,7 @@ module Button
   class Off < State
     def press
       transition_to(On)
-      holder.messages << "#{holder.button_name} is on"
+      holder.messages << "#{holder.name} is on"
     end
 
     def name
@@ -40,7 +40,7 @@ module Button
   end
 
   class Button < StateHolder
-    def button_name
+    def name
       "Button"
     end
 

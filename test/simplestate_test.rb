@@ -53,4 +53,8 @@ class SimplestateTest < Minitest::Test
   def test_raises_NoMethodError_
     assert_equal false, @button.respond_to?(:private_method)
   end
+
+  def test_a_button_method_overrides_state_method_of_same_name
+    assert_equal 'Button', @button.name
+  end
 end

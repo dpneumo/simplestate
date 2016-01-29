@@ -25,6 +25,48 @@ Or install it yourself as:
     $ gem install simplestate
 
 ## Usage
+Inherit from StateHolder to create the class of objects that will hold states:
+
+```ruby
+class Button < StateHolder
+  # button methods here
+end
+```
+Inherit from State to create a class to provide specific state behaviors:
+
+```ruby
+class Off < State
+  def press
+    transition_to(On)
+    holder.messages << "#{holder.name} is on"
+  end
+
+  def name
+    'Off'
+  end
+
+private
+  def enter
+    holder.messages << "Entered the Off state"
+  end
+
+  def exit
+    holder.messages << "Exited the Off state"
+  end
+end
+```
+The subclassed state may provide *private* enter and exit methods. Any other state methods intended to be available via a call to that method on the state holder must be public. #enter and #exit will always be called appropriately during state transitions.
+
+A state has access to methods on the state holder via #holder:
+
+```ruby
+holder.a_special_holder_method
+```
+Creation of a holder instance *must* specify the initial state class:
+
+```ruby
+button = Button.new(initial_state_class: Off)
+```
 
 The button module provides an example of the usage of Simplestate. Tests of this are provided in simplestate_test.rb.
 
@@ -36,7 +78,7 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/simplestate. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/dpneumo/simplestate. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
