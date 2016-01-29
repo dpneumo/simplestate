@@ -26,7 +26,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The button module provides an example of the usage of Simplestate. Tests of this are provided in simplestate_test.rb.
 
 ## Development
 
