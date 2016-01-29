@@ -1,8 +1,12 @@
 # Simplestate
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/simplestate`. To experiment with that code, run `bin/console` for an interactive prompt.
+Simplestate arose out of a need to build a simple statemachine. This implementation was inspired by Daniel Cadenas' StatePattern gem. (https://github.com/dcadenas/state_pattern)
 
-TODO: Delete this and the text above, and describe your gem
+I have chosen to eschew serialization of state for now. SimpleDelegator provides the basic functionality required for this implementation. SimpleDelegator supports dynamically swapping the object to which delegated calls are made.
+
+The StateHolder class derives from SimpleDelegator. A 'real' state holding object inherits from StateHolder. StateHolder provides support for transitioning between states. Any method not available on the state holder will be forwarded to the currently held state.
+
+The State class from which all 'real' states inherit has private #enter and #exit methods that raise an exception. Real states are expected to override these methods with at least 'no-ops'. Any public methods added to a 'real' state can be called on the object holding the state via inherited SimpleDelegator. #enter and #exit like all private state methods are not reachable via the SimpleDelagator functionality. They are intended for internal use by the state instance.
 
 ## Installation
 
@@ -28,7 +32,7 @@ TODO: Write usage instructions here
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`.
 
 ## Contributing
 
