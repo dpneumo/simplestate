@@ -4,7 +4,7 @@ module StateInterfaceTest
   end
 
   def test_responds_to_previous_state
-    assert_respond_to(@state, :previous_state)
+    assert_respond_to(@state, :previous_state_class)
   end
 
   def test_responds_to_pvt_methods_enter_and_exit

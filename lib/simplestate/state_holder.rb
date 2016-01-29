@@ -7,13 +7,14 @@ class StateHolder < SimpleDelegator
   end
 
   def transition_to(new_state_class)
-    current_state.send(:exit) if current_state
+    current_state.send(:exit)
     set_new_state(new_state_class)
     current_state.send(:enter)
   end
 
   def set_new_state(new_state_class)
-    current_state = new_state_class.new(self, current_state)
+    new_state = new_state_class.new(self, current_state.class)
+    self.current_state = new_state
   end
 
   def current_state

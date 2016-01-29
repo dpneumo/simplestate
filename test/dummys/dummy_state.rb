@@ -1,6 +1,6 @@
 class DummyState < State
-  attr_reader :holder, :previous_state
-  def initialize(holder, previous_state)
+  attr_reader :holder, :previous_state_class
+  def initialize(holder, previous_state_class)
     @holder = holder
   end
 
