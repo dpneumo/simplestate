@@ -38,7 +38,7 @@ class Button < StateHolder
   # button methods here
 end
 ```
-If you want to set additional attributes at creation of a new button, new is called with an opts hash. Set the attribute from the opts hash in initialize. You !must! call super if you provide an initialize method in your holder class.
+If you want to set additional attributes at creation of a new button, new is called with an opts hash. Set the attribute from the opts hash in initialize. You *must* call super if you provide an initialize method in your holder class.
 
 Inherit from State to create a class to provide specific state behaviors:
 
@@ -63,14 +63,14 @@ private
   end
 end
 ```
-The subclassed state may provide !private! enter and exit methods. Any other state methods intended to be available via a call to that method on the state holder must be public. #enter and #exit will always be called appropriately during state transitions.
+The subclassed state may provide *private* enter and exit methods. Any other state methods intended to be available via a call to that method on the state holder must be public. #enter and #exit will always be called appropriately during state transitions.
 
 A state has access to methods on the state holder via #holder:
 
 ```ruby
 holder.a_special_holder_method
 ```
-Creation of a holder instance !must! specify the initial state class:
+Creation of a holder instance *must* specify the initial state class:
 
 ```ruby
 button = Button.new(initial_state_class: Off)
