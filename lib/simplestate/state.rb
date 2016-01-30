@@ -3,6 +3,16 @@ class State
   def initialize(holder, previous_state_class)
     @holder = holder
     @previous_state_class = previous_state_class
+    @previous_states = []
+  end
+
+  def previous_states
+    @previous_states
+  end
+
+  def push_previous_state(state)
+    state.previous_states.shift if state
+    @previous_states.push(state)
   end
 
 private
