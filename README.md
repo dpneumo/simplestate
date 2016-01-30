@@ -79,7 +79,7 @@ private
   end
 end
 ```
-The subclassed state may provide *private* enter and exit methods. Any other state methods intended to be available via a call to that method on the state holder must be public. #enter and #exit will always be called appropriately during state transitions.
+The subclassed state may provide *private* enter and exit methods. Any other state methods intended to be available via a method call on the state holder must be public. #enter and #exit will always be called appropriately during state transitions.
 
 A state has access to methods on the state holder via #holder:
 
