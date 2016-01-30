@@ -19,7 +19,7 @@ class StateHolderTest < Minitest::Test
   include StateHolderInterfaceTest
 
   def test_creation_fails_without_initial_state_class
-    assert_raises(KeyError) { StateHolder.new }
+    assert_raises(NoMethodError) { StateHolder.new }
   end
 
   def test_creation_sets_initial_state

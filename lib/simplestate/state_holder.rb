@@ -1,9 +1,8 @@
 class StateHolder < SimpleDelegator
   def initialize(opts={})
-    initial_state_class = opts.fetch :initial_state_class
-    initial_state = initial_state_class.new(self, nil)
-    # Set current_state within SimpleDelegator
-    super(initial_state)
+    set_initial_state_from(opts)
+    # Set current_state to initial state within SimpleDelegator
+    super(@initial_state)
   end
 
   def transition_to(new_state_class)
@@ -25,4 +24,11 @@ private
   def current_state=(state)
     __setobj__(state)
   end
+
+  def set_initial_state_from(opts)
+    initial_state_class = opts.fetch :start_in,
+                         (opts.fetch :initial_state_class, nil)
+    @initial_state = initial_state_class.new(self, nil)
+  end
+
 end
