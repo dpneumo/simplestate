@@ -25,7 +25,7 @@ Or install it yourself as:
     $ gem install simplestate
 
 ## Usage
-Inherit from StateHolder to create the class of objects that will hold states:
+Inherit from StateHolder to create the class of the object that will hold states:
 
 ```ruby
 class Button < StateHolder
@@ -44,7 +44,7 @@ StateHolder expects to receive the initial state class in an opts hash at creati
 ```ruby
 button = Button.new(initial_state_class: Off)
 ```
-or alternate syntax:
+or use this alternate syntax:
 
 ```ruby
 button = Button.new(start_in: Off)
