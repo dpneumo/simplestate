@@ -9,7 +9,7 @@ class SimplestateTest < Minitest::Test
   include Button
 
   def setup
-    @button = Button.new(initial_state_class: Off)
+    @button = Button.new(initial_state_class: Off, color: 'Red')
   end
 
   def test_initial_button_state_is_set
