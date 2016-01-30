@@ -18,12 +18,17 @@ class StateHolderTest < Minitest::Test
 
   include StateHolderInterfaceTest
 
-  def test_creation_fails_without_initial_state_class
+  def test_creation_requires_initial_state_class_specification
     assert_raises(NoMethodError) { StateHolder.new }
   end
 
   def test_creation_sets_initial_state
     assert_equal State1, @state_holder.current_state.class
+  end
+
+  def test_alternate_initial_state_specification_in_creation
+    sh_alt = StateHolder.new(start_in: State2)
+    assert_equal State2, sh_alt.current_state.class
   end
 
   def test_can_set_a_new_state
