@@ -38,7 +38,23 @@ class Button < StateHolder
   # button methods here
 end
 ```
-If you want to set additional attributes at creation of a new button, new is called with an opts hash. Set the attribute from the opts hash in initialize. You *must* call super if you provide an initialize method in your holder class.
+
+StateHolder expects to receive the initial state class in an opts hash at creation. Creation of a holder instance *must* specify the initial state class:
+
+```ruby
+button = Button.new(initial_state_class: Off)
+```
+or alternate syntax:
+
+```ruby
+button = Button.new(start_in: Off)
+```
+If you want to set additional attributes at creation of a new button, do so within the opts hash when new is called. Set the attribute from the opts hash in initialize. You *must* call super if you provide an initialize method in your holder class.
+
+```ruby
+button = Button.new(start_in: Off, color: 'Red')
+```
+
 
 Inherit from State to create a class to provide specific state behaviors:
 
@@ -69,11 +85,6 @@ A state has access to methods on the state holder via #holder:
 
 ```ruby
 holder.a_special_holder_method
-```
-Creation of a holder instance *must* specify the initial state class:
-
-```ruby
-button = Button.new(initial_state_class: Off)
 ```
 
 The button module provides an example of the usage of Simplestate. Tests of this are provided in simplestate_test.rb.
