@@ -19,13 +19,13 @@ class StateHolder < SimpleDelegator
     __getobj__
   end
 
-private
-  def current_state=(state)
-    __setobj__(state)
-  end
-
   def set_new_state(new_state_class)
     new_state = new_state_class.new(self, current_state.class)
     self.current_state = new_state
+  end
+
+private
+  def current_state=(state)
+    __setobj__(state)
   end
 end

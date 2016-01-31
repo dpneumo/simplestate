@@ -53,5 +53,9 @@ module Button
     def messages
       @messages ||= []
     end
+
+    def prior_state
+      previous_states.last.class
+    end
   end
 end

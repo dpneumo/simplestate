@@ -87,6 +87,29 @@ A state has access to methods on the state holder via #holder:
 holder.a_special_holder_method
 ```
 
+# version 0.3.0 addition
+A state has a *previous_states* method that returns an array of the states through which the state holder has transitioned to reach that state. Currently that array size is limited to 1. Old entries are dropped as new entries are added. DO NOT rely on that size limit. The last item in the list will be the most recent previous state. This is a public method on a state so it can be used via the state holder:
+
+```ruby
+class Button < StateHolder
+  ...
+
+  def prior_state
+    previous_states.last.class
+  end
+end
+
+ # Then in tests for example:
+def test_a_button_returns_its_last_prior_state
+  @button.press # Curr state: On,  Prior state: Off
+  @button.press # Curr state: Off, Prior state: On
+  assert_equal On, @button.prior_state
+end
+```
+
+Please note that State#previous_state_class does not have to agree with previous_states.last.class. #previous_state_class is set arbitrarily at instance creation. #previous_states is updated automatically at each state transition. #previous_state_class will be removed at some point in the future.
+
+# usage example
 The button module provides an example of the usage of Simplestate. Tests of this are provided in simplestate_test.rb.
 
 ## Development

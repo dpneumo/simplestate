@@ -60,4 +60,25 @@ class SimplestateTest < Minitest::Test
   def test_a_button_method_overrides_state_method_of_same_name
     assert_equal 'Button', @button.name
   end
+
+  def test_a_button_knows_its_previous_states
+    assert_equal NilState, @button.previous_states.last.class
+    @button.press
+    assert_equal Off, @button.previous_states.last.class
+    @button.press
+    assert_equal On, @button.previous_states.last.class
+  end
+
+  def test_a_buttons_previous_states_list_depth_limited_to_one
+    @button.press
+    @button.press
+    @button.press
+    assert_equal 1, @button.previous_states.size
+  end
+
+  def test_a_button_returns_its_last_prior_state
+    @button.press # Curr state: On,  Prior state: Off
+    @button.press # Curr state: Off, Prior state: On
+    assert_equal On, @button.prior_state
+  end
 end

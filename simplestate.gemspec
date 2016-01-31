@@ -33,6 +33,6 @@ Gem::Specification.new do |spec|
 
   # Uncomment these to make pry available in testing
   # Also make necessary changes in test_helper.rb
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "pry-byebug"
+  #spec.add_development_dependency "pry"
+  #spec.add_development_dependency "pry-byebug"
 end

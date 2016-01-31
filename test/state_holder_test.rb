@@ -13,7 +13,6 @@ end
 
 class StateHolderTest < Minitest::Test
   def setup
-    #binding.pry
     @state_holder = StateHolder.new(initial_state_class: State1)
   end
 
@@ -40,7 +39,7 @@ class StateHolderTest < Minitest::Test
   end
 
   def test_can_set_a_new_state
-    skip
+    #skip
     @state_holder.set_new_state(State2)
     assert_equal State2, @state_holder.current_state.class
     assert_equal @state_holder, @state_holder.current_state.holder
@@ -48,7 +47,7 @@ class StateHolderTest < Minitest::Test
   end
 
   def test_can_set_previous_state_on_current_state
-    skip
+    #skip
     @state_holder.set_new_state(State2)
     curr_state = @state_holder.current_state
     last_prev_state = curr_state.previous_states.last
