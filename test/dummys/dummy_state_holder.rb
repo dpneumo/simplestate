@@ -1,5 +1,6 @@
 class DummyStateHolder
   def initialize(opts={})
+    @cs = DummyState.new(self, nil)
   end
 
   def transition_to(new_state_class)

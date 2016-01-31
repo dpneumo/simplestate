@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "~> 5.0"
 
   # Uncomment these to make pry available in testing
-  #spec.add_development_dependency "pry"
-  #spec.add_development_dependency "pry-byebug"
+  # Also make necessary changes in test_helper.rb
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "pry-byebug"
 end

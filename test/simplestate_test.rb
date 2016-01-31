@@ -16,12 +16,13 @@ class SimplestateTest < Minitest::Test
 
   def test_initial_button_state_is_set
     assert_equal 'Off', @button.current_state.name
-    assert_equal  nil,  @button.previous_state_class
+    assert_equal  NilState,  @button.previous_state_class
   end
 
   def test_single_button_press
     @button.press
-    expected = ["Exited the Off state", "Entered the On state", "Button is on"]
+    expected = [ "Entered the Off state", "Exited the Off state",
+                 "Entered the On state", "Button is on"]
     assert_equal expected, @button.messages
     assert_equal Off, @button.previous_state_class
   end
@@ -29,7 +30,7 @@ class SimplestateTest < Minitest::Test
   def test_double_button_press
     @button.press
     @button.press
-    expected = [ "Exited the Off state",
+    expected = [ "Entered the Off state", "Exited the Off state",
                  "Entered the On state",  "Button is on", "Exited the On state",
                  "Entered the Off state", "Button is off" ]
     assert_equal expected, @button.messages

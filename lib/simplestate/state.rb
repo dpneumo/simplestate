@@ -1,18 +1,9 @@
 class State
-  attr_reader :holder, :previous_state_class
+  attr_reader :holder, :previous_state_class, :previous_states
   def initialize(holder, previous_state_class)
     @holder = holder
     @previous_state_class = previous_state_class
-    @previous_states = []
-  end
-
-  def previous_states
-    @previous_states
-  end
-
-  def push_previous_state(state)
-    state.previous_states.shift if state
-    @previous_states.push(state)
+    @previous_states = build_previous_states_list
   end
 
 private
@@ -26,5 +17,12 @@ private
 
   def exit
     raise "#{self.class.name} does not implement #exit."
+  end
+
+  def build_previous_states_list
+    hcs = holder.current_state
+    psa = hcs.previous_states || []
+    psa.shift
+    psa << hcs
   end
 end
