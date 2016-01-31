@@ -3,14 +3,6 @@ module StateInterfaceTest
     assert_respond_to(@state, :holder)
   end
 
-  def test_responds_to_previous_state_class
-    assert_respond_to(@state, :previous_state_class)
-  end
-
-  def test_responds_to_previous_states
-    assert_respond_to(@state, :previous_states)
-  end
-
   def test_responds_to_pvt_methods_enter_and_exit
     prvt = true
     assert_equal true, @state.respond_to?(:enter, prvt)

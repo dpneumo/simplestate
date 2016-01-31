@@ -8,7 +8,10 @@ module StateHolderInterfaceTest
   end
 
   def test_responds_to_set_new_state
-    #skip
     assert_respond_to(@state_holder, :set_new_state)
+  end
+
+  def test_responds_to_state_history
+    assert_respond_to(@state_holder, :state_history)
   end
 end

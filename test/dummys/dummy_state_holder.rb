@@ -1,6 +1,7 @@
 class DummyStateHolder
+  attr_reader :state_history
   def initialize(opts={})
-    @cs = DummyState.new(self, nil)
+    @cs = DummyState.new(self)
   end
 
   def transition_to(new_state_class)

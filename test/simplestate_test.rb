@@ -16,7 +16,7 @@ class SimplestateTest < Minitest::Test
 
   def test_initial_button_state_is_set
     assert_equal 'Off', @button.current_state.name
-    assert_equal  NilState,  @button.previous_state_class
+    assert_equal  NilState,  @button.prior_state
   end
 
   def test_single_button_press
@@ -24,7 +24,7 @@ class SimplestateTest < Minitest::Test
     expected = [ "Entered the Off state", "Exited the Off state",
                  "Entered the On state", "Button is on"]
     assert_equal expected, @button.messages
-    assert_equal Off, @button.previous_state_class
+    assert_equal Off, @button.prior_state
   end
 
   def test_double_button_press
@@ -34,7 +34,7 @@ class SimplestateTest < Minitest::Test
                  "Entered the On state",  "Button is on", "Exited the On state",
                  "Entered the Off state", "Button is off" ]
     assert_equal expected, @button.messages
-    assert_equal On, @button.previous_state_class
+    assert_equal On, @button.prior_state
   end
 
   def test_a_button_does_not_respond_to_enter
@@ -61,24 +61,24 @@ class SimplestateTest < Minitest::Test
     assert_equal 'Button', @button.name
   end
 
-  def test_a_button_knows_its_previous_states
-    assert_equal NilState, @button.previous_states.last.class
-    @button.press
-    assert_equal Off, @button.previous_states.last.class
-    @button.press
-    assert_equal On, @button.previous_states.last.class
-  end
-
-  def test_a_buttons_previous_states_list_depth_limited_to_one
-    @button.press
-    @button.press
-    @button.press
-    assert_equal 1, @button.previous_states.size
-  end
-
   def test_a_button_returns_its_last_prior_state
     @button.press # Curr state: On,  Prior state: Off
     @button.press # Curr state: Off, Prior state: On
     assert_equal On, @button.prior_state
+  end
+
+  def test_a_button_stores_previous_state_history
+    (1..8).each { @button.press }
+    hsl = @button.hx_size_limit
+    assert_equal hsl, @button.state_history.size
+  end
+
+  def test_the_default_history_size_is_5
+    assert_equal 5, @button.hx_size_limit
+  end
+
+  def test_may_set_button_history_size_limit
+    @button.hx_size_limit = 10
+    assert_equal 10, @button.hx_size_limit
   end
 end

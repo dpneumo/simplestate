@@ -55,7 +55,7 @@ module Button
     end
 
     def prior_state
-      previous_states.last.class
+      state_history.last.class
     end
   end
 end

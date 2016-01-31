@@ -87,18 +87,22 @@ A state has access to methods on the state holder via #holder:
 holder.a_special_holder_method
 ```
 
-#### version 0.3.0 addition
-A state has a *previous_states* method that returns an array of the states through which the state holder has transitioned to reach that state. Currently that array size is limited to 1. Old entries are dropped as new entries are added. DO NOT rely on that size limit. The last item in the list will be the most recent previous state. This is a public method on a state so it can be used via the state holder:
+#### version 1.0.0
+A state holder tracks the history of state transitions in an array accessed via #state_history. The array size defaults to 5. The last item in the array will be the most recent previous state instance. The size may be set at holder creation in the opts hash (:hx_size_limit). The history size limit has a getter and a setter defined as well. (#hx_size_limit= & #hx_size_limit).
 
 ```ruby
 class Button < StateHolder
   ...
   def prior_state
-    previous_states.last.class
+    state_history.last.class
   end
 end
 
  # Then in tests for example:
+def setup
+  @button = Button.new(start_in: Off, color: 'Red', hz_size_limit: 3)
+end
+
 def test_a_button_returns_its_last_prior_state
   @button.press # Curr state: On,  Prior state: Off
   @button.press # Curr state: Off, Prior state: On
@@ -106,7 +110,10 @@ def test_a_button_returns_its_last_prior_state
 end
 ```
 
-Please note that State#previous_state_class does not have to agree with previous_states.last.class. #previous_state_class is set arbitrarily at instance creation. #previous_states is updated automatically at each state transition. #previous_state_class will be removed at some point in the future.
+Please note that the State instance method, previous_state_class, has been removed in this release.
+
+#### version 0.3.0 addition
+The 0.3.0 version contained a serious code smell: A state was expected to know about the history of state transitions. However, a state should know only the states to which it may transition and it's holder to support triggering those transitions. Knowlege of the transition history belongs with the state holder, if it is tracked at all.
 
 #### usage example
 The button module (test/dummys/button.rb) provides an example of the usage of Simplestate. Tests of this are provided in simplestate_test.rb.

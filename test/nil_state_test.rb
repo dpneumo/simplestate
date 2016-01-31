@@ -3,7 +3,7 @@ require 'state_interface_test'
 
 class NilStateTest < Minitest::Test
   def setup
-    @state = NilState.new(nil, nil)
+    @state = NilState.new(nil)
   end
 
   include StateInterfaceTest
