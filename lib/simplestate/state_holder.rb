@@ -5,12 +5,9 @@ class StateHolder < SimpleDelegator
     @state_history = []
     @hx_size_limit = opts.fetch :hx_size_limit, 5
     # Set current_state to nil state within SimpleDelegator
-    nil_state = NilState.new(nil)
-    super(nil_state)
+    super(NilState.new(nil))
     # Then transition to the initial state class
-    initial_state_class = opts.fetch :start_in,
-                         (opts.fetch :initial_state_class, nil)
-    transition_to initial_state_class
+    transition_to initial_state_class(opts)
   end
 
   def transition_to(new_state_class)
@@ -37,5 +34,10 @@ private
   def update_state_history
     @state_history << current_state
     @state_history = @state_history.last(hx_size_limit)
+  end
+
+  def initial_state_class(opts)
+    opts.fetch :start_in,
+               (opts.fetch :initial_state_class, nil)
   end
 end
