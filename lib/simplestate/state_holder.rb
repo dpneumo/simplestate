@@ -1,13 +1,12 @@
 class StateHolder < SimpleDelegator
-  attr_reader :state_history
+  attr_reader :state_history, :beginning
   attr_accessor :hx_size_limit
   def initialize(opts={})
     @state_history = []
     @hx_size_limit = opts.fetch :hx_size_limit, 5
-    # Set current_state to nil state within SimpleDelegator
+    @beginning = initial_state_class(opts)
     super(NilState.new(nil))
-    # Then transition to the initial state class
-    transition_to initial_state_class(opts)
+    transition_to beginning
   end
 
   def transition_to(new_state_class)
@@ -22,8 +21,7 @@ class StateHolder < SimpleDelegator
   end
 
   def set_new_state(new_state_class)
-    new_state = new_state_class.new(self)
-    self.current_state = new_state
+    self.current_state = new_state_class.new(self)
   end
 
 private
@@ -37,7 +35,8 @@ private
   end
 
   def initial_state_class(opts)
-    opts.fetch :start_in,
-               (opts.fetch :initial_state_class, nil)
+    isc = opts.fetch :start_in,
+                     (opts.fetch :initial_state_class, nil)
+    isc ? isc : raise(NoMethodError)
   end
 end

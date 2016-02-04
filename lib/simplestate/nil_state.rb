@@ -1,13 +1,8 @@
-class NilState
-  attr_reader :holder
+class NilState < State
   def initialize(holder)
-    @holder = holder
   end
 
 private
-  def transition_to(new_state_class)
-  end
-
   def enter
   end
 
