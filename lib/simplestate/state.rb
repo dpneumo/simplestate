@@ -10,10 +10,10 @@ private
   end
 
   def enter
-    raise "#{self.class.name} does not implement #enter."
+    raise NotImplementedError, "need to define #enter."
   end
 
   def exit
-    raise "#{self.class.name} does not implement #exit."
+    raise NotImplementedError, "need to define #exit."
   end
 end
