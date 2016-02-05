@@ -14,6 +14,9 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/dpneumo/simplestate"
   spec.license       = "MIT"
 
+  # This gem will work with 1.9.2 or greater...
+  spec.required_ruby_version = '>= 1.9.2'
+
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
   if spec.respond_to?(:metadata)
