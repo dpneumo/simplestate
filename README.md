@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/dpneumo/simplestate/badge.svg?branch=master)](https://coveralls.io/github/dpneumo/simplestate?branch=master)
+
 # Simplestate
 
 Simplestate arose out of a need to build a simple statemachine. This implementation was inspired by Daniel Cadenas' StatePattern gem. (https://github.com/dcadenas/state_pattern)
