@@ -14,4 +14,16 @@ module StateHolderInterfaceTest
   def test_responds_to_state_history
     assert_respond_to(@state_holder, :state_history)
   end
+
+  def test_responds_to_beginning
+    assert_respond_to(@state_holder, :beginning)
+  end
+
+  def test_responds_to_hx_size_limit
+    assert_respond_to(@state_holder, :hx_size_limit)
+  end
+
+  def test_responds_to_hx_size_limit=
+    assert_respond_to(@state_holder, :hx_size_limit=)
+  end
 end

@@ -1,10 +1,10 @@
 class StateHolder < SimpleDelegator
-  attr_reader :state_history, :beginning
+  attr_reader :beginning, :state_history
   attr_accessor :hx_size_limit
   def initialize(opts={})
-    @state_history = []
-    @hx_size_limit = opts.fetch :hx_size_limit, 5
     @beginning = initial_state_class(opts)
+    @hx_size_limit = opts.fetch :hx_size_limit, 5
+    @state_history = []
     super(NilState.new(nil))
     transition_to beginning
   end

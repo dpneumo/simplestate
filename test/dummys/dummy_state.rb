@@ -10,10 +10,8 @@ private
   end
 
   def enter
-    "dummy enter"
   end
 
   def exit
-    'dummy exit'
   end
 end

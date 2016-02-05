@@ -1,5 +1,6 @@
 class DummyStateHolder
-  attr_reader :state_history
+  attr_reader :state_history, :beginning
+  attr_accessor :hx_size_limit
   def initialize(opts={})
     @cs = DummyState.new(self)
   end
