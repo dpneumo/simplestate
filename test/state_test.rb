@@ -9,11 +9,11 @@ class StateTest < Minitest::Test
   include StateInterfaceTest
 
   def test_State_does_not_implement_enter
-    assert_raises(RuntimeError) { @state.send(:enter) }
+    assert_raises(NotImplementedError) { @state.send(:enter) }
   end
 
   def test_State_does_not_implement_exit
-    assert_raises(RuntimeError) { @state.send(:exit) }
+    assert_raises(NotImplementedError) { @state.send(:exit) }
   end
 
   def test_transition_to_calls_state_holder_transition_to

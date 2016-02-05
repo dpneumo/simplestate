@@ -37,6 +37,6 @@ private
   def initial_state_class(opts)
     isc = opts.fetch :start_in,
                      (opts.fetch :initial_state_class, nil)
-    isc ? isc : raise(NoMethodError)
+    isc ? isc : raise(ArgumentError, "initial state class is missing.")
   end
 end
