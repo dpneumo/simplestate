@@ -4,8 +4,11 @@ require 'simplestate'
 
 require 'minitest/autorun'
 
-require 'coveralls'
-Coveralls.wear!
+#require 'coveralls'
+#Coveralls.wear!
+
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 
 # Uncomment these to make pry available
 # Also make necessary changes in simplestate.gemspec

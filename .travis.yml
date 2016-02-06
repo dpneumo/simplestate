@@ -5,3 +5,6 @@ rvm:
   - "2.2.3"
   - rbx
 before_install: gem install bundler -v 1.11.2
+addons:
+  code_climate:
+    repo_token: 7117c7e81edb9c392163973b38922a6eb70f11c7
