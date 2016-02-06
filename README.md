@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-[![Gem Version](https://badge.fury.io/rb/simplestate.svg)](https://badge.fury.io/rb/simplestate) [![Build Status](https://travis-ci.org/dpneumo/simplestate.svg?branch=master)](https://travis-ci.org/dpneumo/simplestate) [![Code Climate](https://codeclimate.com/github/dpneumo/simplestate/badges/gpa.svg)](https://codeclimate.com/github/dpneumo/simplestate) [![Test Coverage](https://codeclimate.com/github/dpneumo/simplestate/badges/coverage.svg)](https://codeclimate.com/github/dpneumo/simplestate/coverage)
-=======
-[![Gem Version](https://badge.fury.io/rb/simplestate.svg)](https://badge.fury.io/rb/simplestate) [![Build Status](https://travis-ci.org/dpneumo/simplestate.svg?branch=master)](https://travis-ci.org/dpneumo/simplestate) 
-[![Code Climate](https://codeclimate.com/github/dpneumo/simplestate/badges/gpa.svg)](https://codeclimate.com/github/dpneumo/simplestate) [![Test Coverage](https://codeclimate.com/github/dpneumo/simplestate/badges/coverage.svg)](https://codeclimate.com/github/dpneumo/simplestate/coverage)
->>>>>>> 03bc5943b14e0aff0ddc5bf0bd1093e3d110bc5c
+[![Gem Version](https://badge.fury.io/rb/simplestate.svg)](https://badge.fury.io/rb/simplestate)
+[![Build Status](https://travis-ci.org/dpneumo/simplestate.svg?branch=master)](https://travis-ci.org/dpneumo/simplestate)
+[![Code Climate](https://codeclimate.com/github/dpneumo/simplestate/badges/gpa.svg)](https://codeclimate.com/github/dpneumo/simplestate)
+[![Test Coverage](https://codeclimate.com/github/dpneumo/simplestate/badges/coverage.svg)](https://codeclimate.com/github/dpneumo/simplestate/coverage)
 
 # Simplestate
 
