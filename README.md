@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/dpneumo/simplestate.svg?branch=master)](https://travis-ci.org/dpneumo/simplestate) [![Coverage Status](https://coveralls.io/repos/github/dpneumo/simplestate/badge.svg?branch=master)](https://coveralls.io/github/dpneumo/simplestate?branch=master)
+[![Gem Version](https://badge.fury.io/rb/simplestate.svg)](https://badge.fury.io/rb/simplestate) [![Build Status](https://travis-ci.org/dpneumo/simplestate.svg?branch=master)](https://travis-ci.org/dpneumo/simplestate) [![Coverage Status](https://coveralls.io/repos/github/dpneumo/simplestate/badge.svg?branch=master)](https://coveralls.io/github/dpneumo/simplestate?branch=master)
 [![Code Climate](https://codeclimate.com/github/dpneumo/simplestate/badges/gpa.svg)](https://codeclimate.com/github/dpneumo/simplestate)
 
 # Simplestate
