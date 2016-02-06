@@ -2,7 +2,7 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/dpneumo/simplestate/badge.svg?branch=master)](https://coveralls.io/github/dpneumo/simplestate?branch=master)
 
-[![Code Climate](https://codeclimate.com/github/thoughtbot/paperclip/badges/gpa.svg)](https://codeclimate.com/github/thoughtbot/paperclip)
+[![Code Climate](https://codeclimate.com/github/dpneumo/simplestate/badges/gpa.svg)](https://codeclimate.com/github/dpneumo/simplestate)
 
 # Simplestate
 
