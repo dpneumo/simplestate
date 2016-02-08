@@ -11,10 +11,16 @@ end
 
 class Off < State
   def press; transition_to(On); end
+  private
+    def enter; end
+    def exit; end
 end
 
 class On < State
   def press; transition_to(Off); end
+  private
+    def enter; end
+    def exit; end
 end
 
 button = Button.new(start_in: Off)
@@ -22,17 +28,17 @@ button.press    # current_state: On
 button.press    # current_state: Off
 ````
 # Description
-Simplestate arose out of a desire for a very low ceremony mechanism to implement a state machine. I have used SimpleDelegator (delegate.rb) to implement this. Because SimpleDelegator supports dynamically swapping the object to which methods are delegated, it provides a good base for Simplestate.
+Simplestate arose out of a desire for a very low ceremony mechanism to implement a state machine. SimpleDelegator (delegate.rb) is used to implement this. Because SimpleDelegator supports dynamically swapping the object to which methods are delegated, it provides a good base for Simplestate.
 
 The StateHolder class provides the required functionality for a basic state machine: methods to set the initial state and to transition to a new state. To complement this a State class is provided to serve as ancestor to the states of the state machine. A State instance stores a reference to the state holder and a __#transition_to__ method which simply calls the state holder's __#transition_to__.
 
 StateHolder and State are not expected to be used directly. Rather, they are intended to be inherited from. The child state holder should provide methods not specific to its current state. A child state should provide methods specific to that state. The public methods of a child state act as receivers of event messages via delegation from the state holder. Such events may cause effects that are managed by the current state and may also cause transition to a new state. State change logic is expected to be held within the current state. Two private methods, __#enter__ and __#exit__, *must* be provided by each state. These are called by the state holder __#transition_to__ method at the appropriate points in the state life cycle. Neither __#enter__ nor __#exit__ nor any other private method of a state are intended to be called by a user of the state holder.
 
-For convenience StateHolder provides instance methods, __#current_state__ and __#set_new_state__, to provide easy access to the underlying methods, __\_\_getobj\_\___ and __\_\_setobj\_\___, of SimpleDelegator. A method to retrieve the history of state transitions from the state holder, __#state_history__, is also provided. Since the transition history could grow quite large that history is limited to the last 5 transitions by default. The history size limit may be changed via __#hx_size_limit__. That limit may be changed at any time. Changes to the limit will take effect an the next state transition.
+For convenience StateHolder provides instance methods, __#current_state__ and __#set_new_state__, to provide easy access to the underlying methods, __\_\_getobj\_\___ and __\_\_setobj\_\___, of SimpleDelegator. A method to retrieve the history of state transitions from the state holder, __#state_history__, is also provided. Since the transition history could grow quite large that history is limited to the last 5 transitions by default. The history size limit may be changed via __#hx_size_limit__. That limit may be changed at any time. Changes to the limit will take effect at the next state transition.
 
 Simplestate does not provide a DSL for specifying the events, states and allowed state transitions. That logic must be specified within each state. Neither does Simplestate provide any mechanism for serialization. There is no "magic" here. It is just a couple of PORO's. As such, it is very easy to see and to reason about what is happening within Simplestate. It should not be too difficult to add serialization support to Simplestate.
 
-As an aside, I have looked into providing the Simplestate functionality via a module. However, I found that the SimpleDelegator class provides delegation via a mechanism that makes a module based Simplestate implementation very difficult to achieve. The complexity of that implementation seemed to be not worth the effort. I think the StatePattern gem by [Daniel Cadenas](https://github.com/dcadenas/state_pattern), the inspiration for Simplestate, ran into just this problem. I chose to avoid that issue by relying solely on inheritance.
+As an aside, I have looked into providing the Simplestate functionality via a module. However, I found that the SimpleDelegator class provides delegation via a mechanism that makes a module based Simplestate implementation very difficult to achieve. The complexity of that implementation seemed to be not worth the effort. I think the [StatePattern](https://github.com/dcadenas/state_pattern) gem by Daniel Cadenas, the inspiration for Simplestate, ran into just this problem. I chose to avoid that issue by relying solely on inheritance.
 
 
 ## Installation
@@ -139,7 +145,7 @@ end
 
 Please note that the State instance method, __#previous_state_class__, has been removed in this release.
 
-#### version 0.3.0 addition
+#### version 0.3.0
 The 0.3.0 version contained a serious code smell: A state was expected to know about the history of state transitions. However, a state should know only the states to which it may transition and it's holder to support triggering those transitions. Knowlege of the transition history belongs with the state holder, if it is tracked at all.
 
 #### usage example
@@ -152,6 +158,8 @@ If a DSL is desired, complex state functionality is required, events may arrive 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+StateHolderInterfaceTest and StateInterfaceTest are provided to verify that your state holder and state instances respond to the minimum required method calls for each. Simply include these in the tests of your decendents of StateHolder and State and in any dummies of these classes you may use in your tests.
 
 To install this gem onto your local machine, run `bundle exec rake install`.
 
