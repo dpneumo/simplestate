@@ -1,17 +1,39 @@
-[![Gem Version](https://badge.fury.io/rb/simplestate.svg)](https://badge.fury.io/rb/simplestate)
-[![Build Status](https://travis-ci.org/dpneumo/simplestate.svg?branch=master)](https://travis-ci.org/dpneumo/simplestate)
+[![Gem Version](https://badge.fury.io/rb/simplestate.svg)](https://badge.fury.io/rb/simplestate) [![Build Status](https://travis-ci.org/dpneumo/simplestate.svg?branch=master)](https://travis-ci.org/dpneumo/simplestate)
 [![Code Climate](https://codeclimate.com/github/dpneumo/simplestate/badges/gpa.svg)](https://codeclimate.com/github/dpneumo/simplestate)
-[![Test Coverage](https://codeclimate.com/github/dpneumo/simplestate/badges/coverage.svg)](https://codeclimate.com/github/dpneumo/simplestate/coverage)
 
 # Simplestate
+````ruby
+class Button < StateHolder
+  def initialize(opts={})
+    super
+  end
+end
 
-Simplestate arose out of a need to build a simple statemachine. This implementation was inspired by Daniel Cadenas' StatePattern gem. (https://github.com/dcadenas/state_pattern)
+class Off < State
+  def press; transition_to(On); end
+end
 
-I have chosen to eschew serialization of state for now. SimpleDelegator provides the basic functionality required for this implementation. SimpleDelegator supports dynamically swapping the object to which delegated calls are made.
+class On < State
+  def press; transition_to(Off); end
+end
 
-The StateHolder class derives from SimpleDelegator. A 'real' state holding object inherits from StateHolder. StateHolder provides support for transitioning between states. Any method not available on the state holder will be forwarded to the currently held state.
+button = Button.new(start_in: Off)
+button.press    # current_state: On
+button.press    # current_state: Off
+````
+# Description
+Simplestate arose out of a desire for a very low ceremony mechanism to implement a state machine. I have used SimpleDelegator (delegate.rb) to implement this. Because SimpleDelegator supports dynamically swapping the object to which methods are delegated, it provides a good base for Simplestate.
 
-The State class from which all 'real' states inherit has private #enter and #exit methods that raise an exception. Real states are expected to override these methods with at least 'no-ops'. Any public methods added to a 'real' state can be called on the object holding the state via inherited SimpleDelegator. #enter and #exit like all private state methods are not reachable via the SimpleDelagator functionality. They are intended for internal use by the state instance.
+The StateHolder class provides the required functionality for a basic state machine: methods to set the initial state and to transition to a new state. To complement this a State class is provided to serve as ancestor to the states of the state machine. A State instance stores a reference to the state holder and a __#transition_to__ method which simply calls the state holder's __#transition_to__.
+
+StateHolder and State are not expected to be used directly. Rather, they are intended to be inherited from. The child state holder should provide methods not specific to its current state. A child state should provide methods specific to that state. The public methods of a child state act as receivers of event messages via delegation from the state holder. Such events may cause effects that are managed by the current state and may also cause transition to a new state. State change logic is expected to be held within the current state. Two private methods, __#enter__ and __#exit__, *must* be provided by each state. These are called by the state holder __#transition_to__ method at the appropriate points in the state life cycle. Neither __#enter__ nor __#exit__ nor any other private method of a state are intended to be called by a user of the state holder.
+
+For convenience StateHolder provides instance methods, __#current_state__ and __#set_new_state__, to provide easy access to the underlying methods, __\_\_getobj\_\___ and __\_\_setobj\_\___, of SimpleDelegator. A method to retrieve the history of state transitions from the state holder, __#state_history__, is also provided. Since the transition history could grow quite large that history is limited to the last 5 transitions by default. The history size limit may be changed via __#hx_size_limit__. That limit may be changed at any time. Changes to the limit will take effect an the next state transition.
+
+Simplestate does not provide a DSL for specifying the events, states and allowed state transitions. That logic must be specified within each state. Neither does Simplestate provide any mechanism for serialization. There is no "magic" here. It is just a couple of PORO's. As such, it is very easy to see and to reason about what is happening within Simplestate. It should not be too difficult to add serialization support to Simplestate.
+
+As an aside, I have looked into providing the Simplestate functionality via a module. However, I found that the SimpleDelegator class provides delegation via a mechanism that makes a module based Simplestate implementation very difficult to achieve. The complexity of that implementation seemed to be not worth the effort. I think the StatePattern gem by [Daniel Cadenas](https://github.com/dcadenas/state_pattern), the inspiration for Simplestate, ran into just this problem. I chose to avoid that issue by relying solely on inheritance.
+
 
 ## Installation
 
@@ -84,16 +106,16 @@ private
   end
 end
 ```
-The subclassed state may provide *private* enter and exit methods. Any other state methods intended to be available via a method call on the state holder must be public. #enter and #exit will always be called appropriately during state transitions.
+The subclassed state must provide *private* __#enter__ and __#exit__ methods. Any other state methods intended to be available via a method call on the state holder must be public. __#enter__ and __#exit__ will always be called appropriately during state transitions.
 
-A state has access to methods on the state holder via #holder:
+A state has access to methods on the state holder via __#holder__:
 
 ```ruby
 holder.a_special_holder_method
 ```
 
 #### version 1.0.0
-A state holder tracks the history of state transitions in an array accessed via #state_history. The array size defaults to 5. The last item in the array will be the most recent previous state instance. The size may be set at holder creation in the opts hash (:hx_size_limit). The history size limit has a getter and a setter defined as well. (#hx_size_limit= & #hx_size_limit).
+A state holder tracks the history of state transitions in an array accessed via __#state_history__. The array size defaults to 5. The last item in the array will be the most recent previous state instance. The size may be set at holder creation in the opts hash (:hx_size_limit). The history size limit has a getter and a setter defined as well. (__#hx_size_limit=__  and  __#hx_size_limit__).
 
 ```ruby
 class Button < StateHolder
@@ -115,13 +137,17 @@ def test_a_button_returns_its_last_prior_state
 end
 ```
 
-Please note that the State instance method, previous_state_class, has been removed in this release.
+Please note that the State instance method, __#previous_state_class__, has been removed in this release.
 
 #### version 0.3.0 addition
 The 0.3.0 version contained a serious code smell: A state was expected to know about the history of state transitions. However, a state should know only the states to which it may transition and it's holder to support triggering those transitions. Knowlege of the transition history belongs with the state holder, if it is tracked at all.
 
 #### usage example
 The button module (test/dummys/button.rb) provides an example of the usage of Simplestate. Tests of this are provided in simplestate_test.rb.
+
+## Alternatives
+
+If a DSL is desired, complex state functionality is required, events may arrive asynchronously from multiple sources, or state machine functionality must be provided via inclusion of a module rather than via inheritance then Simplestate is probably not appropriate. Consider looking at the [Statemachine](https://github.com/pluginaweek/state_machine), [AASM](https://github.com/aasm/aasm) or [Workflow](https://github.com/geekq/workflow) gems. [The Ruby Toolbox](https://www.ruby-toolbox.com/categories/state_machines.html) provides links to several other statemachine implementations.
 
 ## Development
 
@@ -137,4 +163,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/dpneum
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
