@@ -12,20 +12,32 @@ end
 class Off < State
   def press; transition_to(On); end
   private
-    def enter; end
-    def exit; end
+    def enter
+      # send_message_to_log("entering off state")
+      # turn_light_off
+    end
+
+    def exit
+      # send_message_to_log("leaving off state")
+    end
 end
 
 class On < State
   def press; transition_to(Off); end
   private
-    def enter; end
-    def exit; end
+    def enter
+      # send_message_to_log("entering on state")
+      # turn_light_on
+    end
+
+    def exit
+      # send_message_to_log("leaving on state")
+    end
 end
 
 button = Button.new(start_in: Off)
-button.press    # current_state: On
-button.press    # current_state: Off
+button.press    #=> current_state: On
+button.press    #=> current_state: Off
 ````
 # Description
 Simplestate arose out of a desire for a very low ceremony mechanism to implement a state machine. SimpleDelegator (delegate.rb) is used to implement this. Because SimpleDelegator supports dynamically swapping the object to which methods are delegated, it provides a good base for Simplestate.
@@ -58,7 +70,9 @@ Or install it yourself as:
     $ gem install simplestate
 
 ## Usage
-Inherit from StateHolder to create the class of the object that will hold states:
+
+#### State Holder
+Inherit from StateHolder to create the class of the object that will hold states. You *must* call super if you provide an initialize method in your holder class:
 
 ```ruby
 class Button < StateHolder
@@ -72,7 +86,7 @@ class Button < StateHolder
 end
 ```
 
-StateHolder expects to receive the initial state class in an opts hash at creation. Creation of a holder instance *must* specify the initial state class:
+Creation of a StateHolder instance *must* specify the initial state class. StateHolder expects to receive the initial state class in an opts hash at creation:
 
 ```ruby
 button = Button.new(initial_state_class: Off)
@@ -82,12 +96,13 @@ or use this alternate syntax:
 ```ruby
 button = Button.new(start_in: Off)
 ```
-If you want to set additional attributes at creation of a new button, do so within the opts hash when new is called. Set the attribute from the opts hash in initialize. You *must* call super if you provide an initialize method in your holder class.
+If you want to set additional attributes at creation of a new button, do so within the opts hash when new is called. Set the attribute from the opts hash in initialize.
 
 ```ruby
 button = Button.new(start_in: Off, color: 'Red')
 ```
 
+#### States
 
 Inherit from State to create a class to provide specific state behaviors:
 
