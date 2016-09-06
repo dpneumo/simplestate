@@ -17,7 +17,7 @@ class StateHistoryTest < Minitest::Test
 
   def test_maintains_an_ordered_list_of_most_recent_state_names
     @state_history = StateHistory.new(hx_size_limit: 4)
-    @state_history << 'one' << 'two' << 'three' << 'four' << 'five'
-    assert_equal ['two', 'three', 'four', 'five'], @state_history.list
+    @state_history << :one << :two << :three << :four << :five
+    assert_equal [:two, :three, :four, :five], @state_history.list
   end
 end

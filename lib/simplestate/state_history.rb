@@ -1,14 +1,18 @@
 class StateHistory
-  attr_reader :list, :hx_size_limit
+  attr_reader :hx_size_limit
 
   def initialize(hx_size_limit: 10)
     @hx_size_limit = hx_size_limit
-    @list = []
+    @container = []
   end
 
-  def <<(current_state_name)
-    @list << current_state_name
-    @list = @list.last(hx_size_limit)
+  def <<(state_symbol)
+    @container << state_symbol
+    @container = @container.last(hx_size_limit)
     self
+  end
+
+  def list
+    @container
   end
 end
