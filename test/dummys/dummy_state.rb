@@ -1,8 +1,20 @@
 class DummyState
+  # Designed to match the public interface of decendents of State
+
   attr_reader :holder
-  def initialize(holder)
+  def initialize(holder:, opts: {})
     @holder = holder
   end
+
+  def self.list
+    {}
+  end
+
+  def name
+    'DummyState'
+  end
+  alias :to_s :name
+
 
 private
   def transition_to(new_state_class)

@@ -1,19 +1,32 @@
 class State
+  @@dict = {}
+
   attr_reader :holder
-  def initialize(holder)
+  def initialize(holder: nil, opts: {})
     @holder = holder
+
+    @@dict[self.name]= self
   end
 
-private
-  def transition_to(new_state_class)
-    holder.transition_to(new_state_class)
+  def self.list
+    @@dict
   end
 
-  def enter
-    raise NotImplementedError, "need to define #enter."
+  def name
+    'State'
   end
+  alias :to_s :name
 
-  def exit
-    raise NotImplementedError, "need to define #exit."
-  end
+  private
+    def transition_to(new_state_name)
+      holder.transition_to(new_state_name)
+    end
+
+    def enter
+      raise NotImplementedError, "#enter was called on an instance of State either directly or via super."
+    end
+
+    def exit
+      raise NotImplementedError, "#exit was called on an instance of State either directly or via super."
+    end
 end
