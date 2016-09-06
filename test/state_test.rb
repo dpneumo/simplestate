@@ -27,4 +27,8 @@ class StateTest < Minitest::Test
   def test_symbolizes_its_name
     assert_equal :State, @state.symbol
   end
+
+  def test_error_raised_when_state_is_created_without_a_holder_specified
+    assert_raises(ArgumentError) { State.new() }
+  end
 end

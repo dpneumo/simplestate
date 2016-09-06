@@ -5,8 +5,9 @@ class State
     @list
   end
 
+
   attr_reader :holder
-  def initialize(holder: nil, opts: {})
+  def initialize(holder:, opts: {})
     @holder = holder
     State.list[self.symbol]= self
   end

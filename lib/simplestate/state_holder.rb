@@ -10,12 +10,12 @@ class StateHolder < SimpleDelegator
 
   def start
     state_history << current_state.symbol
-    self.current_state = initial_state
+    transition_to(initial_state)
   end
 
-  def transition_to(new_state)
+  def transition_to(state)
     leave_old_state
-    enter_new_state(new_state)
+    enter_new_state(state)
   end
 
   def current_state
@@ -32,16 +32,17 @@ class StateHolder < SimpleDelegator
 
 private
   def leave_old_state
-    state_history << current_state.symbol
     current_state.__send__(:exit)
   end
 
-  def enter_new_state(new_state)
-    self.current_state = new_state
+  def enter_new_state(state)
+    self.current_state = state
+    state_history << current_state.symbol
     current_state.__send__(:enter)
   end
 
   def current_state=(state)
-    __setobj__(State.list[state])
+    state_obj = State.list[state]
+    __setobj__(state_obj)
   end
 end

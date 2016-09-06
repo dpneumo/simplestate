@@ -29,7 +29,7 @@ class StateHolderTest < Minitest::Test
     assert_raises(ArgumentError) { StateHolder.new }
   end
 
-  def test_creation_sets_initial_state
+  def test_creation_initializes_current_state_to_initial_state
     assert_equal :State1, @state_holder.current_state.symbol
   end
 
@@ -40,15 +40,13 @@ class StateHolderTest < Minitest::Test
     assert_equal expect,  @state_holder.current_state.symbol
   end
 
-  def test_initializes_state_history_to_NullState
-    assert_equal :NullState, @state_holder.history.last
+  def test_initializes_state_history
+    assert_equal [:NullState, :State1], @state_holder.history
   end
 
   def test_updates_state_history_on_state_transition
     @state_holder.transition_to(:State2)
-    assert_equal 2, @state_holder.history.size
-    assert_equal :NullState, @state_holder.history[0]
-    assert_equal :State1, @state_holder.history[1]
+    assert_equal [:NullState, :State1, :State2], @state_holder.history
   end
 end
 

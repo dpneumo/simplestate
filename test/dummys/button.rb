@@ -83,7 +83,7 @@ class Button < StateHolder
   end
 
   def prior_state
-    history.last
+    history[-2] || :NullState
   end
 end
 

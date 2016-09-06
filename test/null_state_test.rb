@@ -7,4 +7,8 @@ class NullStateTest < Minitest::Test
   end
 
   include StateInterfaceTest
+
+  def test_NullState_is_added_to_State_list_of_created_states
+    assert State.list.key?(:NullState)
+  end
 end
