@@ -1,3 +1,5 @@
+require_relative 'button_requires.rb'
+
 # States
 class On < State
   attr_reader :logger
