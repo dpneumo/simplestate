@@ -1,7 +1,5 @@
 require 'test_helper'
 require 'state_holder_interface_test'
-require_relative '../lib/simplestate/state'
-
 
 class State1 < State
   def name;  'State1'; end

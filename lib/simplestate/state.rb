@@ -1,15 +1,15 @@
 class State
-  @@dict = {}
+  @list = {}
 
   attr_reader :holder
   def initialize(holder: nil, opts: {})
     @holder = holder
 
-    @@dict[self.name]= self
+    State.list[self.name]= self
   end
 
   def self.list
-    @@dict
+    @list
   end
 
   def name

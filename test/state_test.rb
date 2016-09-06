@@ -1,6 +1,5 @@
 require 'test_helper'
 require 'state_interface_test'
-require_relative 'dummys/dummy_state_holder'
 
 class StateTest < Minitest::Test
   def setup

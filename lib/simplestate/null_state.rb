@@ -1,5 +1,3 @@
-require_relative 'state'
-
 class NullState < State
   # Simplifies call via super to SimpleDelegator during StateHolder#new
   def self.list

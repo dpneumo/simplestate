@@ -1,8 +1,3 @@
-require 'delegate'
-require_relative '../../lib/simplestate/state'
-require_relative '../../lib/simplestate/state_holder'
-require 'logger'
-
 # States
 class On < State
   attr_reader :logger

@@ -1,6 +1,3 @@
-require_relative '../simplestate/state_history'
-require_relative 'null_state'
-
 class StateHolder < SimpleDelegator
   attr_reader :initial_state_name, :state_history
 

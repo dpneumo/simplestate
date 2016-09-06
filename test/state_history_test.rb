@@ -1,6 +1,5 @@
 require 'test_helper'
 require 'state_history_interface_test'
-require_relative '../lib/simplestate/state_history'
 
 class StateHistoryTest < Minitest::Test
 
