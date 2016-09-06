@@ -19,7 +19,7 @@ module StateHolderInterfaceTest
     assert_respond_to(@state_holder, :hx_size_limit)
   end
 
-  def test_responds_to_initial_state_name
-    assert_respond_to(@state_holder, :initial_state_name)
+  def test_responds_to_initial_state
+    assert_respond_to(@state_holder, :initial_state)
   end
 end

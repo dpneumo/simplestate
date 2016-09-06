@@ -7,7 +7,7 @@ class On < State
   end
 
   def press
-    transition_to('Off')
+    transition_to(:Off)
   end
 
   def name
@@ -42,7 +42,7 @@ class Off < State
   end
 
   def press
-    transition_to('On')
+    transition_to(:On)
   end
 
   def name
@@ -72,18 +72,18 @@ end
 # State Holder
 class Button < StateHolder
   attr_reader :name, :type
-  def initialize(initial_state_name:, state_history: StateHistory.new, opts: {})
+  def initialize(initial_state:, state_history: StateHistory.new, opts: {})
     @name = opts.fetch :name
     @type = opts.fetch :type, 'Very Small'
     super
   end
 
-  def transition_to(new_state_name)
-    super(new_state_name)
+  def transition_to(state)
+    super(state)
   end
 
   def prior_state
-    state_history.list.last
+    history.last
   end
 end
 
@@ -91,7 +91,7 @@ class Runner
   attr_reader :launch_button
 
   def initialize
-    @launch_button = Button.new( initial_state_name: 'Off',
+    @launch_button = Button.new( initial_state: :Off,
                                  opts: {name: 'Launch', type: 'Large'} )
     @on_state = On.new(holder: @launch_button)
     @off_state = Off.new(holder: @launch_button)

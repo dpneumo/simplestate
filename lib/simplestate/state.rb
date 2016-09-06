@@ -1,15 +1,14 @@
 class State
   @list = {}
 
+  def self.list
+    @list
+  end
+
   attr_reader :holder
   def initialize(holder: nil, opts: {})
     @holder = holder
-
-    State.list[self.name]= self
-  end
-
-  def self.list
-    @list
+    State.list[self.symbol]= self
   end
 
   def name
@@ -22,8 +21,8 @@ class State
   end
 
   private
-    def transition_to(new_state_name)
-      holder.transition_to(new_state_name)
+    def transition_to(state)
+      holder.transition_to(state)
     end
 
     def enter
