@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'state_interface_test'
+require 'interface/state_interface_test'
 
 class StateTest < Minitest::Test
   def setup
@@ -22,5 +22,9 @@ class StateTest < Minitest::Test
   def test_transition_to_calls_state_holder_transition_to
     @state.__send__(:transition_to, 'New State' )
     assert_equal 'New State', @state_holder.current_state
+  end
+
+  def test_symbolizes_its_name
+    assert_equal :State, @state.symbol
   end
 end

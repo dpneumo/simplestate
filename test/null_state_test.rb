@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'state_interface_test'
+require 'interface/state_interface_test'
 
 class NullStateTest < Minitest::Test
   def setup

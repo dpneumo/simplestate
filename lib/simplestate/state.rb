@@ -17,6 +17,10 @@ class State
   end
   alias :to_s :name
 
+  def symbol
+    name.to_sym
+  end
+
   private
     def transition_to(new_state_name)
       holder.transition_to(new_state_name)

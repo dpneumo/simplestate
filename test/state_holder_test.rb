@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'state_holder_interface_test'
+require 'interface/state_holder_interface_test'
 
 class State1 < State
   def name;  'State1'; end

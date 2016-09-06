@@ -11,6 +11,10 @@ module StateInterfaceTest
     assert_respond_to(@state, :to_s)
   end
 
+  def test_responds_to_symbol
+    assert_respond_to(@state, :symbol)
+  end
+
   def test_responds_to_pvt_method_transition_to
     prvt = true
     assert_equal true, @state.respond_to?(:transition_to, prvt)

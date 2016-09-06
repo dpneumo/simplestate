@@ -15,6 +15,10 @@ class DummyState
   end
   alias :to_s :name
 
+  def symbol
+    :DummyState
+  end
+
 
 private
   def transition_to(new_state_class)

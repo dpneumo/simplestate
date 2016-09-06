@@ -7,7 +7,6 @@ class NullState < State
   def name
     'NullState'
   end
-  alias :to_s :name
 
 private
   def enter
