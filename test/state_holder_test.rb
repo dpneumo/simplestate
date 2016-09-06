@@ -40,15 +40,15 @@ class StateHolderTest < Minitest::Test
     assert_equal expect,  @state_holder.current_state.name
   end
 
-  def test_initializes_state_history_to_NilState
-    assert_equal 'NullState', @state_holder.state_history.list.last
+  def test_initializes_state_history_to_NullState
+    assert_equal 'NullState', @state_holder.history.last
   end
 
   def test_updates_state_history_on_state_transition
     @state_holder.transition_to('State2')
-    assert_equal 2, @state_holder.state_history.list.size
-    assert_equal 'NullState', @state_holder.state_history.list[0]
-    assert_equal 'State1', @state_holder.state_history.list[1]
+    assert_equal 2, @state_holder.history.size
+    assert_equal 'NullState', @state_holder.history[0]
+    assert_equal 'State1', @state_holder.history[1]
   end
 end
 

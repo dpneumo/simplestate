@@ -22,6 +22,14 @@ class StateHolder < SimpleDelegator
     __getobj__
   end
 
+  def history
+    state_history.list
+  end
+
+  def hx_size_limit
+    state_history.hx_size_limit
+  end
+
 private
   def leave_old_state
     state_history << current_state.name

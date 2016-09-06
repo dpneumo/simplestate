@@ -19,4 +19,12 @@ class DummyStateHolder
   def current_state
     @current_state
   end
+
+  def history
+    []
+  end
+
+  def hx_size_limit
+    1
+  end
 end

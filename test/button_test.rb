@@ -42,11 +42,11 @@ class SimplestateTest < Minitest::Test
 
   def test_a_button_stores_previous_state_history
     15.times { @button.press }
-    hsl = @button.state_history.hx_size_limit
-    assert_equal hsl, @button.state_history.list.size
+    hsl = @button.hx_size_limit
+    assert_equal hsl, @button.history.size
   end
 
   def test_the_default_history_size_is_10
-    assert_equal 10, @button.state_history.hx_size_limit
+    assert_equal 10, @button.hx_size_limit
   end
 end
