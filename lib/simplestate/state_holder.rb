@@ -18,6 +18,7 @@ class StateHolder < SimpleDelegator
     enter_new_state(state)
   end
 
+  # Convenience methods
   def current_state
     __getobj__
   end
@@ -30,19 +31,19 @@ class StateHolder < SimpleDelegator
     state_history.hx_size_limit
   end
 
-private
-  def leave_old_state
-    current_state.__send__(:exit)
-  end
+  private
+    def leave_old_state
+      current_state.__send__(:exit)
+    end
 
-  def enter_new_state(state)
-    self.current_state = state
-    state_history << current_state.symbol
-    current_state.__send__(:enter)
-  end
+    def enter_new_state(state)
+      self.current_state = state
+      state_history << current_state.symbol
+      current_state.__send__(:enter)
+    end
 
-  def current_state=(state)
-    state_obj = State.list[state]
-    __setobj__(state_obj)
-  end
+    def current_state=(state)
+      state_obj = State.list[state]
+      __setobj__(state_obj)
+    end
 end

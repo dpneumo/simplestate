@@ -21,13 +21,13 @@ class NullState
     :NullState
   end
 
-private
-  def transition_to(state)
-  end
+  private
+    def transition_to(state)
+    end
 
-  def enter
-  end
+    def enter
+    end
 
-  def exit
-  end
+    def exit
+    end
 end

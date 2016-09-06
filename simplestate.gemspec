@@ -14,8 +14,8 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/dpneumo/simplestate"
   spec.license       = "MIT"
 
-  # This gem will work with 1.9.2 or greater...
-  spec.required_ruby_version = '>= 1.9.2'
+  # This gem will work with 2.1.0 or greater...
+  spec.required_ruby_version = '>= 2.1.0'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
@@ -30,12 +30,12 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.11"
+  spec.add_development_dependency "bundler", ">= 1.11"
   spec.add_development_dependency "rake", ">= 10.0"
-  spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_development_dependency "minitest", ">= 5.0"
 
   # Uncomment these to make pry available in testing
   # Also make necessary changes in test_helper.rb
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "pry-byebug"
+  #spec.add_development_dependency "pry"
+  #spec.add_development_dependency "pry-byebug"
 end
