@@ -5,7 +5,6 @@ class NullState
   attr_reader :holder
   def initialize(holder: nil, opts: {})
     @holder = holder
-    State.list[self.symbol]= self
   end
 
   def self.list
