@@ -1,3 +1,8 @@
+#### SimpleState version 2.0.3
+Move maintenance of list of states available to an instance of StateList. This instance is held by the state holder. Allows multiple state holders to each have their own list of available states. Removes the effective global state being maintained in the State class.
+
+
+
 #### SimpleState version 2.0.0
 Ruby version requirement has changed to: __>= 2.1.0__ . (Ruby 2.0.0 can be used with some minor modification: Default values must be provided for all keyword arguments.)
 

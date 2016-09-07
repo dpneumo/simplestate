@@ -27,4 +27,8 @@ class DummyStateHolder
   def hx_size_limit
     1
   end
+
+  private
+    def add_state(state_instance)
+    end
 end

@@ -4,6 +4,7 @@ class StateHolder < SimpleDelegator
   def initialize(initial_state:, state_history: StateHistory.new, opts: {})
     @initial_state = initial_state
     @state_history = state_history
+    @state_list = StateList.new
 
     super(NullState.new)
   end
@@ -32,6 +33,7 @@ class StateHolder < SimpleDelegator
   end
 
   private
+    attr_reader :state_list
     def leave_old_state
       current_state.__send__(:exit)
     end
@@ -43,7 +45,11 @@ class StateHolder < SimpleDelegator
     end
 
     def current_state=(state)
-      state_obj = State.list[state]
+      state_obj = state_list[state]
       __setobj__(state_obj)
+    end
+
+    def add_state(state_instance)
+      state_list.add state_instance
     end
 end

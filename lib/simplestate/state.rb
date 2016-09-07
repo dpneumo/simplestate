@@ -1,15 +1,8 @@
 class State
-  @list = {}
-
-  def self.list
-    @list
-  end
-
-
   attr_reader :holder
   def initialize(holder:, opts: {})
     @holder = holder
-    State.list[self.symbol]= self
+    @holder.__send__(:add_state, self)
   end
 
   def name
