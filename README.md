@@ -158,8 +158,6 @@ A state has access to methods on the state holder via __#holder__:
 holder.specialmethod
 ```
 
-However, since a state should have minimal knowledge about the inner workings of it's holder, it is best to limit calls to holder to __#transition\_to__.
-
 #### Usage Example
 The button module (test/dummys/button.rb) provides an example of the usage of Simplestate. Tests of this are provided in button\_test.rb.
 
