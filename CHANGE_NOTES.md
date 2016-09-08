@@ -1,3 +1,9 @@
+#### SimpleState version 2.0.4
+Up date README to reflect creation of the simplestate-demo app.
+Add #keys convenience method to StateList instances.
+
+
+
 #### SimpleState version 2.0.3
 Move maintenance of list of states available to an instance of StateList. This instance is held by the state holder. Allows multiple state holders to each have their own list of available states. Removes the effective global state being maintained in the State class.
 

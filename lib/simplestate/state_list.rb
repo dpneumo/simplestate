@@ -19,4 +19,8 @@ class StateList
   def size
     @list.size
   end
+
+  def keys
+    @list.keys
+  end
 end

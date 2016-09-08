@@ -161,6 +161,8 @@ holder.specialmethod
 #### Usage Example
 The button module (test/dummys/button.rb) provides an example of the usage of Simplestate. Tests of this are provided in button\_test.rb.
 
+A working minimal example app is provided at ```https://github.com/dpneumo/simplestate-demo```
+
 ## Alternatives
 
 If a DSL is desired, complex state functionality is required, events may arrive asynchronously from multiple sources, or state machine functionality must be provided via inclusion of a module rather than via inheritance then Simplestate is probably not appropriate. Consider looking at the [Statemachine](https://github.com/pluginaweek/state\_machine), [AASM](https://github.com/aasm/aasm) or [Workflow](https://github.com/geekq/workflow) gems. [The Ruby Toolbox](https://www.ruby-toolbox.com/categories/state\_machines.html) provides links to several other statemachine implementations.
