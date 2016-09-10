@@ -1,11 +1,10 @@
+# Designed to match the public interface of decendents of StateHolder
 class DummyStateHolder
-  # Designed to match the public interface of decendents of StateHolder
-
   attr_reader :initial_state, :state_history
 
   def initialize(initial_state: 'DummyState', state_history: StateHistory.new, opts: {})
     @initial_state = initial_state
-    @state_history =      []
+    @state_history = []
     @current_state = 'DummyState'
   end
 

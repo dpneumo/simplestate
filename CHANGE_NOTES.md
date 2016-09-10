@@ -1,12 +1,20 @@
-#### SimpleState version 2.0.4
+#### SimpleState version 2.0.6
+Remove some cruft from testing setup.
+Code grooming.
+
+
+#### SimpleState version 2.0.5
 Up date README to reflect creation of the simplestate-demo app.
 Add #keys convenience method to StateList instances.
 
 
+#### SimpleState version 2.0.4
+Minor changes to README.
+AddGemfile.lock to the git tracked documents.
+
 
 #### SimpleState version 2.0.3
 Move maintenance of list of states available to an instance of StateList. This instance is held by the state holder. Allows multiple state holders to each have their own list of available states. Removes the effective global state being maintained in the State class.
-
 
 
 #### SimpleState version 2.0.0
@@ -23,7 +31,6 @@ __#start__ is provided to put the state\_holder in it's initial state. This must
 
 StateHistory:
 This has been added to separate the responsibility for management of state history from StateHolder.
-
 
 
 #### SimpleState version 1.0.0
@@ -50,7 +57,6 @@ end
 ```
 
 Please note that the State instance method, __#previous\_state\_class__, has been removed in this release.
-
 
 
 #### SimpleState version 0.3.0

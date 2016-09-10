@@ -1,13 +1,9 @@
+require 'dummys/dummy_state_holder'
+
+# Designed to match the public interface of decendents of State
 class DummyState
-  # Designed to match the public interface of decendents of State
-
-  def self.list
-    {}
-  end
-
-
   attr_reader :holder
-  def initialize(holder:, opts: {})
+  def initialize(holder: DummyStateHolder.new, opts: {})
     @holder = holder
   end
 
