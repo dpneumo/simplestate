@@ -3,8 +3,7 @@ require 'interface/state_interface_test'
 
 class StateTest < Minitest::Test
   def setup
-    @state_holder = DummyStateHolder.new
-    @state = State.new(holder: @state_holder)
+    @state = State.new(holder: DummyStateHolder.new)
   end
 
   include StateInterfaceTest
@@ -21,14 +20,10 @@ class StateTest < Minitest::Test
 
   def test_transition_to_calls_state_holder_transition_to
     @state.__send__(:transition_to, 'New State' )
-    assert_equal 'New State', @state_holder.current_state
+    assert_equal 'New State', @state.holder.current_state
   end
 
   def test_symbolizes_its_name
     assert_equal :State, @state.symbol
-  end
-
-  def test_error_raised_when_state_is_created_without_a_holder_specified
-    assert_raises(ArgumentError) { State.new() }
   end
 end

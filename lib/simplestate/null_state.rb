@@ -3,12 +3,9 @@ class NullState
   # Avoid chicken and egg problem by mimicing rather than inheriting from State
 
   attr_reader :holder
-  def initialize(holder: nil, opts: {})
+  def initialize(holder:, opts: {})
     @holder = holder
-  end
-
-  def self.list
-    {}
+    @holder.__send__(:add_state, self)
   end
 
   def name

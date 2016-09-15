@@ -1,3 +1,7 @@
+#### SimpleState version 2.0.7
+Provide initial state in the call to StateHolder#start. The call signatures for StateHolder#initialize and #start remain supported. This may change with the next major version change. Note that the state history will no longer begin with :NullState.
+
+
 #### SimpleState version 2.0.6
 Remove some cruft from testing setup.
 Code grooming.

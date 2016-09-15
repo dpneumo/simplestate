@@ -74,14 +74,10 @@ end
 # State Holder
 class Button < StateHolder
   attr_reader :name, :type
-  def initialize(initial_state:, state_history: StateHistory.new, opts: {})
+  def initialize( opts: {})
     @name = opts.fetch :name
     @type = opts.fetch :type, 'Very Small'
     super
-  end
-
-  def transition_to(state)
-    super(state)
   end
 
   def prior_state
@@ -89,26 +85,30 @@ class Button < StateHolder
   end
 end
 
+class MyLogger
+  def info(txt)
+    puts txt
+  end
+end
+
 class Runner
   attr_reader :launch_button
-
   def initialize
-    @launch_button = Button.new( initial_state: :Off,
-                                 opts: {name: 'Launch', type: 'Large'} )
-    @on_state = On.new(holder: @launch_button)
-    @off_state = Off.new(holder: @launch_button)
+    @launch_button = Button.new( opts: {name: 'Launch', type: 'Large'} )
+    On.new( holder: @launch_button, opts: {logger: MyLogger.new} )
+    Off.new( holder: @launch_button, opts: {logger: MyLogger.new} )
   end
 
   def launch_sequence_begin
-    @launch_button.start
+    launch_button.start(:Off)
   end
 
   def launch_is_go
-    @launch_button.press
+    launch_button.press
   end
 
   def launch
-    @launch_button.press
+    launch_button.press
   end
 end
 

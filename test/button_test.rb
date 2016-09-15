@@ -1,15 +1,11 @@
 require 'test_helper'
 
 class ButtonTest < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::Simplestate::VERSION
-  end
-
   def setup
-    @button = Button.new(initial_state: :Off, opts: {name: 'Launch'})
-    @on_state = On.new(holder: @button)
-    @off_state = Off.new(holder: @button)
-    @button.start
+    @button = Button.new( opts: {name: 'Launch'})
+    On.new(holder: @button)
+    Off.new(holder: @button)
+    @button.start(:Off)
   end
 
   def test_initial_button_state_is_set

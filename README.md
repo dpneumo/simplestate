@@ -7,7 +7,7 @@
 ```ruby
 class Button < StateHolder
   attr_reader :name
-  def initialize(initial_state: :Off, state_history: StateHistory.new, opts: {})
+  def initialize(opts: {})
     @name = opts.fetch :name
     super
   end
@@ -107,7 +107,7 @@ Inherit from StateHolder to create the class of the object that will hold states
 ```ruby
 class Button < StateHolder
   attr_reader :color
-  def initialize( initial_state: :Off, opts: {} )
+  def initialize(opts: {})
     @color = opts.fetch :color
     super
   end
@@ -116,17 +116,33 @@ class Button < StateHolder
 end
 ```
 
-Creation of a StateHolder instance *must* specify the initial state. StateHolder expects to receive the initial state as a symbol based on the state name. The name case is preserved in creating the symbol.:
+Creation of a StateHolder instance may specify the initial state. StateHolder expects to receive the initial state as a symbol based on the state name. The name case is preserved in creating the symbol.:
 
 ```ruby
 button = Button.new( initial_state: :Off )
 ```
+or
+```ruby
+button = Button.new()
+```
 If you want to set additional attributes at creation of a new button, do so within the opts hash when new is called. Set the attribute from the opts hash in initialize.
 
 ```ruby
-button = Button.new( initial_state: :Off,
-                     opts: {color: 'Red'} )
+button = Button.new( opts: {color: 'Red'} )
 ```
+After creation of a state holder it must be started:
+
+```ruby
+button = Button.new
+button.start(:Off)
+```
+If the initial state is not directly supplied to the start method, then it must have been supplied at state holder creation:
+
+```ruby
+button = Button.new( initial_state: :Off )
+button.start
+```
+
 
 #### States
 
@@ -159,7 +175,7 @@ holder.specialmethod
 ```
 
 #### Usage Example
-The button module (test/dummys/button.rb) provides an example of the usage of Simplestate. Tests of this are provided in button\_test.rb.
+The button module (test/dummy/button.rb) provides an example of the usage of Simplestate. Tests of this are provided in button\_test.rb.
 
 A working minimal example app is provided at ```https://github.com/dpneumo/simplestate-demo```
 

@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'dummy/dummy_state'
 
 class StateListTest < Minitest::Test
   def setup
@@ -10,7 +11,7 @@ class StateListTest < Minitest::Test
   end
 
   def test_can_add_states_to_the_list
-    @statelist.add(DummyState.new(holder: nil))
+    @statelist.add(DummyState.new(holder: DummyStateHolder.new))
     assert_equal 1, @statelist.size
     assert_equal 'DummyState', @statelist[:DummyState].name
   end

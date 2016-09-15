@@ -1,17 +1,17 @@
 class StateHolder < SimpleDelegator
-  attr_reader :initial_state, :state_history
+  attr_reader :initial_state
 
-  def initialize(initial_state:, state_history: StateHistory.new, opts: {})
-    @initial_state = initial_state
+  def initialize( initial_state: nil,
+                  state_history: StateHistory.new,
+                  state_list: StateList.new,
+                  opts: {})
     @state_history = state_history
-    @state_list = StateList.new
-
-    super(NullState.new)
+    @state_list    = state_list
+    super
   end
 
-  def start
-    state_history << current_state.symbol
-    transition_to(initial_state)
+  def start(init_state=initial_state)
+    enter_new_state(init_state)
   end
 
   def transition_to(state)
@@ -33,7 +33,7 @@ class StateHolder < SimpleDelegator
   end
 
   private
-    attr_reader :state_list
+    attr_reader :state_list, :state_history
     def leave_old_state
       current_state.__send__(:exit)
     end
