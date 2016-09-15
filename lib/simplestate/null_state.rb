@@ -1,5 +1,4 @@
 class NullState
-  # Simplifies call via super to SimpleDelegator during StateHolder#new
   # Avoid chicken and egg problem by mimicing rather than inheriting from State
 
   attr_reader :holder

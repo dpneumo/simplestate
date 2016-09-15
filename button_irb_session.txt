@@ -1,8 +1,0 @@
-[loco@bear simplestate]$ irb
-irb(main):001:0> require_relative 'test/dummys/button'      => true
-irb(main):002:0> launcher = Runner.new                      => #<Runner:0x007ff16b8de4d8 ...
-irb(main):003:0> launcher.launch_sequence_begin             => true
-irb(main):004:0> launcher.launch_is_go                      => true
-irb(main):005:0> launcher.launch                            => true
-irb(main):006:0> launcher.launch_button.state_history.list  => [:NullState, :Off, :On, :Off]
-irb(main):007:0> launcher.launch_button.current_state.name  => "Off"
