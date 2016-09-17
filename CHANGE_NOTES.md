@@ -1,3 +1,6 @@
+#### SimpleState version 2.0.10
+Add rubocop setup. Set rubocop target ruby version to 2.3.Fix an unused method argument warning about state_holder#initialize. Set up CodeClimate test coverage reporting.
+
 #### SimpleState version 2.0.9
 Make stateholder#transition_to a private method. Should have done all along. This is not representative of an event but rather a handler of the internal process of changing states.
 
