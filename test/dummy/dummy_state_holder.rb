@@ -6,6 +6,7 @@ class DummyStateHolder
                   state_history: [],
                   state_list: {},
                   opts: {})
+    @initial_state = initial_state
     @state_history = state_history
     @state_list    = state_list
     @current_state = 'DummyState'
