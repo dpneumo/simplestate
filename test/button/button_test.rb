@@ -3,8 +3,8 @@ require 'test_helper'
 class ButtonTest < Minitest::Test
   def setup
     @button = Button.new( opts: {name: 'Launch'})
-    On.new(holder: @button)
-    Off.new(holder: @button)
+    On.new(holder: @button, opts: {logger: NullLogger.new})
+    Off.new(holder: @button, opts: {logger: NullLogger.new})
     @button.start(:Off)
   end
 
@@ -46,3 +46,9 @@ class ButtonTest < Minitest::Test
     assert_equal 10, @button.hx_size_limit
   end
 end
+
+class NullLogger
+  def info(txt)
+  end
+end
+

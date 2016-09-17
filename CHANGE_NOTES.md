@@ -1,3 +1,8 @@
+#### SimpleState version 2.0.12
+NullState now correctly inherits from State rather than mimicking State.
+Code grooming.
+
+
 #### SimpleState version 2.0.11
 Drop travis check against ruby 2.2.
 Add tests to bring up reported test coverage to 100%. Add test coverage badge to README.

@@ -15,15 +15,15 @@ class State
   end
 
   private
-    def transition_to(state)
-      holder.__send__ :transition_to, state
-    end
+  def transition_to(state)
+    holder.__send__ :transition_to, state
+  end
 
-    def enter
-      raise NotImplementedError, "#enter was called on an instance of State either directly or via super."
-    end
+  def enter
+    raise NotImplementedError, "#enter was called on an instance of State either directly or via super."
+  end
 
-    def exit
-      raise NotImplementedError, "#exit was called on an instance of State either directly or via super."
-    end
+  def exit
+    raise NotImplementedError, "#exit was called on an instance of State either directly or via super."
+  end
 end

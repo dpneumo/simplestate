@@ -4,15 +4,15 @@ require 'interface/state_holder_interface_test'
 class State1 < State
   def name;  'State1'; end
   private
-    def enter; 'State1 enter method called'; end
-    def exit;  'State1 exit method called';  end
+  def enter; 'State1 enter method called'; end
+  def exit;  'State1 exit method called';  end
 end
 
 class State2 < State
   def name;  'State2'; end
   private
-    def enter; 'State2 enter method called'; end
-    def exit;  'State2 exit method called';  end
+  def enter; 'State2 enter method called'; end
+  def exit;  'State2 exit method called';  end
 end
 
 class StateHolderTest < Minitest::Test

@@ -32,6 +32,6 @@ class DummyStateHolder
   end
 
   private
-    def add_state(state_instance)
-    end
+  def add_state(state_instance)
+  end
 end

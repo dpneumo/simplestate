@@ -21,18 +21,18 @@ class On < State
   end
 
   private
-    def enter
-      flash(3)
-      logger.info "Entered the #{name} state."
-    end
+  def enter
+    flash(3)
+    logger.info "Entered the #{name} state."
+  end
 
-    def exit
-      logger.info "Exited the #{name} state."
-    end
+  def exit
+    logger.info "Exited the #{name} state."
+  end
 
-    def flash(n)
-      # n.times { turn_button_light_off_then_on }
-    end
+  def flash(n)
+    # n.times { turn_button_light_off_then_on }
+  end
 end
 
 
@@ -56,18 +56,18 @@ class Off < State
   end
 
   private
-    def enter
-      buzz(1)
-      logger.info "Entered the #{name} state."
-    end
+  def enter
+    buzz(1)
+    logger.info "Entered the #{name} state."
+  end
 
-    def exit
-      logger.info "Exited the #{name} state."
-    end
+  def exit
+    logger.info "Exited the #{name} state."
+  end
 
-    def buzz(sec=0.5)
-      # sound buzzer for sec seconds
-    end
+  def buzz(sec=0.5)
+    # sound buzzer for sec seconds
+  end
 end
 
 

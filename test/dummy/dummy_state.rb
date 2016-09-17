@@ -17,7 +17,7 @@ class DummyState
   end
 
 
-private
+  private
   def transition_to(state)
     holder.transition_to(state)
   end
