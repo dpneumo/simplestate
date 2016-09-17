@@ -31,7 +31,7 @@ class StateHolderTest < Minitest::Test
 
   def test_can_transition_to_new_state
     expect = 'State2 enter method called'
-    assert_equal expect, @state_holder.transition_to(:State2)
+    assert_equal expect, @state_holder.__send__(:transition_to, :State2)
     expect = :State2
     assert_equal expect,  @state_holder.current_state.symbol
   end
@@ -41,7 +41,7 @@ class StateHolderTest < Minitest::Test
   end
 
   def test_updates_state_history_on_state_transition
-    @state_holder.transition_to(:State2)
+    @state_holder.__send__(:transition_to, :State2)
     assert_equal [:State1, :State2], @state_holder.history
   end
 end

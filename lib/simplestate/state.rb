@@ -16,7 +16,7 @@ class State
 
   private
     def transition_to(state)
-      holder.transition_to(state)
+      holder.__send__ :transition_to, state
     end
 
     def enter

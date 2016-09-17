@@ -15,9 +15,9 @@ class LegacyShTest < Minitest::Test
 
   def test_can_transition_to_new_state
     expect = 'State2 enter method called'
-    assert_equal expect, @sh_legacy.transition_to(:State2)
+    assert_equal expect, @sh_legacy.__send__(:transition_to, :State2)
     expect = :State2
-    assert_equal expect,  @sh_legacy.current_state.symbol
+    assert_equal expect, @sh_legacy.current_state.symbol
   end
 
   def test_initializes_state_history
@@ -25,7 +25,7 @@ class LegacyShTest < Minitest::Test
   end
 
   def test_updates_state_history_on_state_transition
-    @sh_legacy.transition_to(:State2)
+    @sh_legacy.__send__(:transition_to, :State2)
     assert_equal [:State1, :State2], @sh_legacy.history
   end
 end

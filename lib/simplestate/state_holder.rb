@@ -14,11 +14,6 @@ class StateHolder < SimpleDelegator
     enter_new_state(init_state)
   end
 
-  def transition_to(state)
-    leave_old_state
-    enter_new_state(state)
-  end
-
   # Convenience methods
   def current_state
     __getobj__
@@ -33,23 +28,28 @@ class StateHolder < SimpleDelegator
   end
 
   private
-    attr_reader :state_list, :state_history
-    def leave_old_state
-      current_state.__send__(:exit)
-    end
+  attr_reader :state_list, :state_history
+  def transition_to(state)
+    leave_old_state
+    enter_new_state(state)
+  end
 
-    def enter_new_state(state)
-      self.current_state = state
-      state_history << current_state.symbol
-      current_state.__send__(:enter)
-    end
+  def leave_old_state
+    current_state.__send__(:exit)
+  end
 
-    def current_state=(state)
-      state_obj = state_list[state]
-      __setobj__(state_obj)
-    end
+  def enter_new_state(state)
+    self.current_state = state
+    state_history << current_state.symbol
+    current_state.__send__(:enter)
+  end
 
-    def add_state(state_instance)
-      state_list.add state_instance
-    end
+  def current_state=(state)
+    state_obj = state_list[state]
+    __setobj__(state_obj)
+  end
+
+  def add_state(state_instance)
+    state_list.add state_instance
+  end
 end
