@@ -1,3 +1,11 @@
+#### SimpleState version 2.1.0
+Make stateholder#transition_to a private method. Should have done all along. This is not representative of an event but rather a handler of the internal process of changing states.
+
+
+#### SimpleState version 2.0.8
+Cleanup tests. Remove some cruft.
+
+
 #### SimpleState version 2.0.7
 Provide initial state in the call to StateHolder#start. The call signatures for StateHolder#initialize and #start remain supported. This may change with the next major version change. Note that the state history will no longer begin with :NullState.
 
