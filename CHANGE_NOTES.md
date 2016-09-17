@@ -1,5 +1,11 @@
+#### SimpleState version 2.0.11
+Drop travis check against ruby 2.2.
+Add tests to bring up reported test coverage to 100%. Add test coverage badge to README.
+
+
 #### SimpleState version 2.0.10
-Add rubocop setup. Set rubocop target ruby version to 2.3.Fix an unused method argument warning about state_holder#initialize. Set up CodeClimate test coverage reporting.
+Add rubocop setup. Set rubocop target ruby version to 2.3. Fix an unused method argument warning about state_holder#initialize. Set up CodeClimate test coverage reporting.
+
 
 #### SimpleState version 2.0.9
 Make stateholder#transition_to a private method. Should have done all along. This is not representative of an event but rather a handler of the internal process of changing states.
