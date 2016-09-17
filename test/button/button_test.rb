@@ -10,7 +10,7 @@ class ButtonTest < Minitest::Test
 
   def test_initial_button_state_is_set
     assert_equal :Off, @button.current_state.symbol
-    assert_equal  :NullState,  @button.prior_state
+    assert_equal :NullState,  @button.prior_state
   end
 
   def test_single_button_press

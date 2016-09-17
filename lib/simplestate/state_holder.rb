@@ -5,6 +5,7 @@ class StateHolder < SimpleDelegator
                   state_history: StateHistory.new,
                   state_list: StateList.new,
                   opts: {})
+    @initial_state = initial_state
     @state_history = state_history
     @state_list    = state_list
     super
