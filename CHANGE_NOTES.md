@@ -1,4 +1,4 @@
-#### SimpleState version 2.1.0
+#### SimpleState version 2.0.9
 Make stateholder#transition_to a private method. Should have done all along. This is not representative of an event but rather a handler of the internal process of changing states.
 
 
