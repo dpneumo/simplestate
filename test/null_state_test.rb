@@ -11,4 +11,8 @@ class NullStateTest < Minitest::Test
   def test_name_returns_the_state_name_as_a_string
     assert_equal 'NullState', @state.name
   end
+
+  def test_name_returns_the_symbolized_state_name
+    assert_equal :NullState, @state.symbol
+  end
 end
