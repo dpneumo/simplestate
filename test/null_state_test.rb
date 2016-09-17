@@ -7,4 +7,8 @@ class NullStateTest < Minitest::Test
   end
 
   include StateInterfaceTest
+
+  def test_name_returns_the_state_name_as_a_string
+    assert_equal 'NullState', @state.name
+  end
 end

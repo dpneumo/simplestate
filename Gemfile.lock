@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simplestate (2.0.9)
+    simplestate (2.0.10)
 
 GEM
   remote: https://rubygems.org/

@@ -16,4 +16,8 @@ class StateListTest < Minitest::Test
     assert_equal 'DummyState', @statelist[:DummyState].name
   end
 
+  def test_a_state_list_can_return_the_keys_from_the_state_list_hash
+    @statelist.add(DummyState.new(holder: DummyStateHolder.new))
+    assert_equal [:DummyState], @statelist.keys
+  end
 end
