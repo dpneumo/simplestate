@@ -2,6 +2,7 @@
 [![Code Climate](https://codeclimate.com/github/dpneumo/simplestate/badges/gpa.svg)](https://codeclimate.com/github/dpneumo/simplestate)
 [![Build Status](https://travis-ci.org/dpneumo/simplestate.svg?branch=master)](https://travis-ci.org/dpneumo/simplestate)
 [![Test Coverage](https://codeclimate.com/github/dpneumo/simplestate/badges/coverage.svg)](https://codeclimate.com/github/dpneumo/simplestate/coverage)
+[![Issue Count](https://codeclimate.com/github/dpneumo/simplestate/badges/issue_count.svg)](https://codeclimate.com/github/dpneumo/simplestate)
 
 ## Ruby Version requirement: >= 2.1.0
 
