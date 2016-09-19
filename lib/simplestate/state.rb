@@ -11,7 +11,7 @@ class State
   end
 
   def name
-    'State'
+    raise NotImplementedError, "#name was called on an instance of State either directly or via super."
   end
   alias :to_s :name
 

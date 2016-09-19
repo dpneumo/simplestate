@@ -8,6 +8,11 @@ class StateTest < Minitest::Test
 
   include StateInterfaceTest
 
+  def test_State_does_not_implement_name_and_raises_an_informative_error
+    err = assert_raises(NotImplementedError) { @state.__send__(:name) }
+    assert_equal "#name was called on an instance of State either directly or via super.", err.message
+  end
+
   def test_State_does_not_implement_enter_and_raises_an_informative_error
     err = assert_raises(NotImplementedError) { @state.__send__(:enter) }
     assert_equal "#enter was called on an instance of State either directly or via super.", err.message
@@ -23,7 +28,15 @@ class StateTest < Minitest::Test
     assert_equal 'New State', @state.holder.current_state
   end
 
-  def test_symbolizes_its_name
-    assert_equal :State, @state.symbol
+  def test_a_State_descendant_can_symbolize_its_name
+    descendant = Descendant.new(holder: DummyStateHolder.new)
+    assert_equal :Descendant, descendant.symbol
   end
+end
+
+class Descendant < State
+  def name; 'Descendant'; end
+  private
+  def enter; end
+  def exit; end
 end
