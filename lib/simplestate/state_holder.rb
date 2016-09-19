@@ -4,11 +4,15 @@ class StateHolder < SimpleDelegator
   def initialize( initial_state: nil,
                   state_history: StateHistory.new,
                   state_list: StateList.new,
-                  opts: {})
+                  opts: nil )
     @initial_state = initial_state
     @state_history = state_history
     @state_list    = state_list
-    super
+    @opts = opts
+    # opts is provided to allow super to be used 'bare' in the argument list of descendents.
+    # It will be silently ignored here. In the descendent opts may be anything,
+    # but a configuration object or a hash paired with appropriate accessors is recommended.
+  super
   end
 
   def start(init_state=initial_state)

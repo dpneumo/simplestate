@@ -3,8 +3,10 @@ require 'dummy/dummy_state_holder'
 # Designed to match the public interface of decendents of State
 class DummyState
   attr_reader :holder
-  def initialize(holder:, opts: {})
+  def initialize( holder: ,
+                  opts: nil )
     @holder = holder
+    @opts = opts
   end
 
   def name

@@ -3,7 +3,8 @@ require_relative 'button_requires.rb'
 # States
 class On < State
   attr_reader :logger
-  def initialize(holder:, opts: {})
+  def initialize( holder: ,
+                  opts: {} )
     @logger = opts.fetch :logger, Logger.new('logfile.log')
     super
   end
@@ -38,7 +39,8 @@ end
 
 class Off < State
   attr_reader :logger
-  def initialize(holder:, opts: {})
+  def initialize( holder: ,
+                  opts: {} )
     @logger = opts.fetch :logger, Logger.new('logfile.log')
     super
   end
@@ -74,7 +76,7 @@ end
 # State Holder
 class Button < StateHolder
   attr_reader :name, :type
-  def initialize( opts: {})
+  def initialize( opts: {} )
     @name = opts.fetch :name
     @type = opts.fetch :type, 'Very Small'
     super

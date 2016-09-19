@@ -5,10 +5,11 @@ class DummyStateHolder
   def initialize( initial_state: nil,
                   state_history: [],
                   state_list: {},
-                  opts: {})
+                  opts: nil )
     @initial_state = initial_state
     @state_history = state_history
     @state_list    = state_list
+    @opts = opts
     @current_state = 'DummyState'
   end
 

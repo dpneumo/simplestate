@@ -1,8 +1,13 @@
 class State
   attr_reader :holder
-  def initialize(holder:, opts: {})
+  def initialize( holder: ,
+                  opts: nil )
     @holder = holder
     @holder.__send__(:add_state, self)
+    @opts = opts
+    # opts is provided to allow super to be used 'bare' in the argument list of descendents.
+    # It will be silently ignored here. In the descendent opts may be anything,
+    # but a configuration object or a hash paired with appropriate accessors is recommended.
   end
 
   def name
