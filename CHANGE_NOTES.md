@@ -1,3 +1,8 @@
+#### SimpleState version 2.0.13
+In State and StateHolder the opts argument to initialize now defaults to nil. Descendents may use this for their own purposes. Recommend use of a configuration object or a hash to pass values via this argument.
+State no longer implements the name method. It will raise Not ImplementedError if called. State descendants must provide their own implementation.
+
+
 #### SimpleState version 2.0.12
 NullState now correctly inherits from State rather than mimicking State.
 Code grooming.
