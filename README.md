@@ -5,6 +5,7 @@
 [![Issue Count](https://codeclimate.com/github/dpneumo/simplestate/badges/issue_count.svg)](https://codeclimate.com/github/dpneumo/simplestate)
 
 ## Ruby Version requirement: >= 2.1.0
+Tested with Rubies 2.1.0, 2.2.4 and 2.3.2
 
 # Simplestate
 ```ruby

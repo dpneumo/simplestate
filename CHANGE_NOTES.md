@@ -1,3 +1,7 @@
+#### SimpleState version 2.0.14
+Tests with Ruby 2.3.2 pass. Removed tests with rbx. Travis-ci not yet running tests for Ruby 2.4.0preview3.
+
+
 #### SimpleState version 2.0.13
 In State and StateHolder the opts argument to initialize now defaults to nil. Descendents may use this for their own purposes. Recommend use of a configuration object or a hash to pass values via this argument.
 State no longer implements the name method. It will raise Not ImplementedError if called. State descendants must provide their own implementation.
