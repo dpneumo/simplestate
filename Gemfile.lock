@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simplestate (2.0.12)
+    simplestate (2.0.13)
 
 GEM
   remote: https://rubygems.org/
@@ -43,4 +43,4 @@ DEPENDENCIES
   simplestate!
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
